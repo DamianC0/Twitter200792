@@ -8,6 +8,7 @@ def home_view(request, *args, **kwargs):
     #return HttpResponse("<h1>Hello world!</h1>")
     return render(request, "pages/home.html", context = {}, status = 200)
 
+#/create-tweet
 def tweet_create_view(request, *args, **kwargs):
     form = TweetForm(request.POST or None)
     next_url = request.POST.get("next") or None
@@ -19,6 +20,7 @@ def tweet_create_view(request, *args, **kwargs):
         form = TweetForm()
     return render(request, 'components/form.html', context = {"form": form})
 
+#/tweets
 def tweet_list_view(request, *args, **kwargs):
     """
     REST API VIEW
@@ -32,6 +34,7 @@ def tweet_list_view(request, *args, **kwargs):
     }
     return JsonResponse(data)
 
+#/tweets/{id}
 def tweet_detail_view(request, tweet_id, *args, **kwargs):
     """
     REST API VIEW
