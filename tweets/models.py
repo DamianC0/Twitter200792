@@ -8,3 +8,6 @@ class Tweet(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE) #many users can have many tweets
     content = models.TextField(blank=True, null=True)
     image = models.FileField(upload_to='images/', blank=True, null=True)
+
+    def __str__(self):
+        return self.content
