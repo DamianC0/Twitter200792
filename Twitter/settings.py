@@ -27,6 +27,7 @@ SECRET_KEY = 'django-insecure-3f2y8$ql%5%d%2vtv1xk3*mjxb^vjrlkw3o=!c=-k&9u!y#8bz
 DEBUG = True
 
 ALLOWED_HOSTS = []
+LOGIN_URL = "/login"
 
 
 # Application definition
@@ -39,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'rest_framework',
+    
     'tweets',
 ]
 
