@@ -45,7 +45,7 @@ def tweet_detail_view(request, tweet_id, *args, **kwargs):
     serializer = TweetSerializer(obj)
     return Response(serializer.data, status = 200)
     
-#/delete-view
+#/tweets/{id}/delete
 @api_view(['DELETE', 'POST'])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])

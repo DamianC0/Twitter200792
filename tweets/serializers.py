@@ -6,7 +6,7 @@ MAX_LENGTH = 240
 class TweetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tweet
-        fields = ['content']
+        fields = ['user', 'id', 'content']
 
     def validate_content(self, value):
         if len(value) > MAX_LENGTH:

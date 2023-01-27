@@ -1,12 +1,50 @@
 {% extends 'base.html'%}
 
 {% block content %}
+<style>
+    #button1 {
+        position: absolute;
+        right: 10px;
+        top: 5px;
+    }
+    #button2 {
+        position: absolute;
+        right: 10px;
+        top: 45px;
+    }
+    #button3 {
+        position: absolute;
+        right: 10px;
+        top: 85px;
+    }
+</style>
+<script type="text/javascript">
+    function redirect1() {
+        location.href = "/tweets/" + document.getElementById("searchText1").value
+    }
+    function redirect2() {
+        location.href = "/tweets/" + document.getElementById("searchText2").value + "/delete"
+    }
+</script>
+
+{% if not user.is_authenticated %}
+<button id="button1" onclick="location.href = /login/">Login</button>
+{% endif %}
+<button id="button2" onclick="location.href = /register/">Register</button>
+{% if user.is_authenticated %}
+<button id="button3" onclick="location.href = /logout/">Logout</button>
+{% endif %}
+
 <div class='row text-center'>
     <div class="col">
-        Welcome to Twitter! 
+    {% if user.is_authenticated %}
+        Welcome to Twitter {{ user.get_username}}! 
+    {% else %}
+        Welcome to Twitter!
+    {% endif %}
     </div>
 </div>
-    
+
 <div class="row mb-3">
     <div class="col-md-4 mx-auto col-10">
         <form class="form" method="POST" action="/create-tweet/">
@@ -15,6 +53,23 @@
             <textarea class="form-control" name="content" placeholder="Your tweet..."></textarea>
             <button type="submit" class="btn btn-primary">Tweet</button>
         </form>
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-md-4 mx-auto col-10">
+        <button class="btn btn-secondary" onclick="location.href = /tweets/">View tweets</button>
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-md-4 mx-auto col-10">
+        <input type="text" maxlength="512" id="searchText1" placeholder = "Insert tweet id..."/>
+        <button class="btn btn-secondary" id="btn1" onclick="redirect1()">View tweet</button>
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-md-4 mx-auto col-10">
+        <input type="text" maxlength="512" id="searchText2" placeholder = "Insert tweet id..."/>
+        <button class="btn btn-secondary" id="btn2" onclick="redirect2()">Delete tweet</button>
     </div>
 </div>
     
